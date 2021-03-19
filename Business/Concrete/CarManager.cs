@@ -4,6 +4,7 @@ using System.Text;
 using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 
 namespace Business.Concrete
 {
@@ -15,9 +16,9 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public void AddCar(Car car)
+        public void Add(Car car)
         {
-            if (car.Description.Length <= 2 && car.DailyPrice <=0)
+            if (car.Description.Length <= 2 && car.DailyPrice <= 0)
             {
                 Console.WriteLine("Araç ekleme başarısız.");
             }
@@ -28,20 +29,46 @@ namespace Business.Concrete
             }
         }
 
+        public void Delete(Car car)
+        {
+            _carDal.Delete(car);
+        }
+
         public List<Car> GetAll()
         {
-            // if(x)
             return _carDal.GetAll();
         }
 
-        public List<Car> GetCarsByBrandId(int brandId)
+        public Car GetById(int id)
         {
-            return _carDal.GetAll(p=> p.BrandId == brandId);
+            return _carDal.Get(p => p.Id == id);
+
         }
 
-        public List<Car> GetCarsByColorId(int colorId)
+        public List<CarDetailDTO> GetCarDetails()
         {
-            return _carDal.GetAll(p => p.ColorId == colorId);
+            return _carDal.GetCarDetails();
+        }
+
+        //public List<Car> GetCarsByBrandId(int brandId)
+        //{
+        //    return _carDal.GetAll(p => p.BrandId == brandId);
+        //}
+
+        //public List<Car> GetCarsByColorId(int colorId)
+        //{
+        //    return _carDal.GetAll(p => p.ColorId == colorId);
+        //}
+
+        public void Insert(Car car)
+        {
+            _carDal.Add(car);
+
+        }
+
+        public void Update(Car car)
+        {
+            _carDal.Update(car);
         }
     }
 }

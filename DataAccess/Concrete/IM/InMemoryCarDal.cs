@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 
 namespace DataAccess.Concrete.IM
 {
@@ -69,6 +70,11 @@ namespace DataAccess.Concrete.IM
         }
 
         public Car Get(Expression<Func<Car, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CarDetailDTO> GetCarDetails()
         {
             throw new NotImplementedException();
         }
