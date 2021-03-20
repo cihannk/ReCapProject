@@ -16,8 +16,13 @@ namespace Console
             IBrandDal brandDal = new EfBrandDal();
             IColorDal colorDal = new EfColorDal();
             ICarDal carDal = new EfCarDal();
+            IRentalDal rentalDal = new EfRentalDal();
+            IUserDal userDal = new EfUserDal();
+            ICustomerDal customerDal = new EfCustomerDal();
+
 
             ICarService carManager = new CarManager(carDal);
+            IRentalService rentalManager = new RentalManager(rentalDal);
 
             //brandDal.Add(new Brand { Id = 2, Description = "wir leiben autos", Name = "Wolksvagen" });
             //colorDal.Add(new Color { Id = 1, Name = "Black" });
@@ -30,6 +35,9 @@ namespace Console
 
             var details = carManager.GetCarDetails();
 
+            userDal.Add(new User { Id = 1, EMail = "x@gmail.com", FirstName = "Ahmet", LastName = "Sonuç", Password = "ahmet123" });
+            customerDal.Add(new Customer { UserId = 1, CompanyName = "ahmet inşaat" });
+            rentalManager.Add(new Rental { Id = 1, CarId = 2, CustomerId = 1, RentDate = new DateTime(2021, 3, 20) });
             foreach (var detail in details.Data)
             {
                 System.Console.WriteLine("Marka:{0}, Model:{1}, Renk:{2}, Price:{3}",detail.BrandName, detail.CarName, detail.ColorName, detail.DailyPrice);

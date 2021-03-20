@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Entities.Concrete;
-using Core.Utilities.Results;
 using Core.Business;
+using Core.Utilities.Results;
+using Entities.Concrete;
+using Entities.DTOs;
 
 namespace Business.Abstract
 {
-    public interface IColorService:IBaseService<Color>
+    public interface IRentalService:IBaseService<Rental>
     {
 
     }
