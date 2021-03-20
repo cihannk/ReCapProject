@@ -28,9 +28,9 @@ namespace Console
 
             //Test(brandDal, colorDal, carDal);
 
-            var details = carDal.GetCarDetails();
+            var details = carManager.GetCarDetails();
 
-            foreach (var detail in details)
+            foreach (var detail in details.Data)
             {
                 System.Console.WriteLine("Marka:{0}, Model:{1}, Renk:{2}, Price:{3}",detail.BrandName, detail.CarName, detail.ColorName, detail.DailyPrice);
 

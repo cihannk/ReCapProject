@@ -5,6 +5,8 @@ using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
+using Core.Utilities.Results;
+using Business.Contants;
 
 namespace Business.Concrete
 {
@@ -16,38 +18,40 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
             if (car.Description.Length <= 2 && car.DailyPrice <= 0)
             {
-                Console.WriteLine("Araç ekleme başarısız.");
+                return new ErrorResult(Messages.NotEnoughInfo);
             }
-            else
-            {
-                _carDal.Add(car);
-                Console.WriteLine("Araç eklendi");
-            }
+            
+             _carDal.Add(car);
+            return new SuccessResult(Messages.CarAdded);
+
+            
+            
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             _carDal.Delete(car);
+            return new SuccessResult(Messages.CarDeleted);
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
-            return _carDal.GetAll();
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarsListed);
         }
 
-        public Car GetById(int id)
+        public IDataResult<Car> GetById(int id)
         {
-            return _carDal.Get(p => p.Id == id);
+            return new SuccessDataResult<Car>(_carDal.Get(p => p.Id == id));
 
         }
 
-        public List<CarDetailDTO> GetCarDetails()
+        public IDataResult<List<CarDetailDTO>> GetCarDetails()
         {
-            return _carDal.GetCarDetails();
+            return new SuccessDataResult<List<CarDetailDTO>>(_carDal.GetCarDetails());
         }
 
         //public List<Car> GetCarsByBrandId(int brandId)
@@ -60,15 +64,10 @@ namespace Business.Concrete
         //    return _carDal.GetAll(p => p.ColorId == colorId);
         //}
 
-        public void Insert(Car car)
-        {
-            _carDal.Add(car);
-
-        }
-
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
             _carDal.Update(car);
+            return new SuccessResult("Araç başarıyla güncellendi");
         }
     }
 }
