@@ -35,9 +35,9 @@ namespace Console
 
             var details = carManager.GetCarDetails();
 
-            userDal.Add(new User { Id = 1, EMail = "x@gmail.com", FirstName = "Ahmet", LastName = "Sonuç", Password = "ahmet123" });
+            userDal.Add(new User { UserId = 1, Email = "x@gmail.com", FirstName = "Ahmet", LastName = "Sonuç", Password = "ahmet123" });
             customerDal.Add(new Customer { UserId = 1, CompanyName = "ahmet inşaat" });
-            rentalManager.Add(new Rental { Id = 1, CarId = 2, CustomerId = 1, RentDate = new DateTime(2021, 3, 20) });
+            rentalManager.Add(new Rental { RentalId = 1, CarId = 2, CustomerId = 1, RentDate = new DateTime(2021, 3, 20) });
             foreach (var detail in details.Data)
             {
                 System.Console.WriteLine("Marka:{0}, Model:{1}, Renk:{2}, Price:{3}",detail.BrandName, detail.CarName, detail.ColorName, detail.DailyPrice);
@@ -49,11 +49,11 @@ namespace Console
 
         private static void Test(IBrandDal brandDal, IColorDal colorDal, ICarDal carDal)
         {
-            brandDal.Add(new Brand { Id = 2, Name = "Audi", Description = "German automobile manufacturer" });
-            colorDal.Add(new Color { Id = 2, Name = "Blue" });
-            carDal.Add(new Car { Id = 2, BrandId = 2, Description = "A8", ModelYear = 2017, ColorId = 2, DailyPrice = 100000 });
-            carDal.Delete(new Car { Id = 6, BrandId = 1, ColorId = 1, DailyPrice = 60000, Description = "Passat", ModelYear = 2016 });
-            carDal.Add(new Car { Id = 1, BrandId = 1, ColorId = 1, DailyPrice = 60000, Description = "Passat", ModelYear = 2016 });
+            brandDal.Add(new Brand { BrandId = 2, Name = "Audi", Description = "German automobile manufacturer" });
+            colorDal.Add(new Color { ColorId = 2, Name = "Blue" });
+            carDal.Add(new Car { CarId = 2, BrandId = 2, Description = "A8", ModelYear = 2017, ColorId = 2, DailyPrice = 100000 });
+            carDal.Delete(new Car { CarId = 6, BrandId = 1, ColorId = 1, DailyPrice = 60000, Description = "Passat", ModelYear = 2016 });
+            carDal.Add(new Car { CarId = 1, BrandId = 1, ColorId = 1, DailyPrice = 60000, Description = "Passat", ModelYear = 2016 });
         }
     }
 }
