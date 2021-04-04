@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Contants
@@ -17,5 +18,12 @@ namespace Business.Contants
         public static string RentalsListed = "Rentals listelendi";
         public static string CarImageExceeded = "Maksimum araba resim limitine ulaşıldı.";
         public static string CarImageAdded = "Araba resmi eklendi.";
+        public static string UserRegistered = "Kullanıcı kayıt oldu.";
+        public static string UserNotFound = "Kullanıcı bulunamadı";
+
+        public static string UserAlreadyExists = "Kullanıcı sistemde zaten var.";
+        public static string UserValidationError = "Kullanıcı onaylanmadı.";
+        public static string SuccessfulLogin = "Başarıyla giriş yapıldı";
+        public static string AuthorizationDenied = "Yetki hatası";
     }
 }

@@ -9,6 +9,7 @@ using Core.Utilities.Results;
 using Business.Contants;
 using Core.Aspects.Autofac.Validation;
 using Business.ValidationRules.FluentValidation;
+using Business.BusinessAspects.Autofac;
 
 namespace Business.Concrete
 {
@@ -21,6 +22,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(CarValidator))]
+        [SecuredOperation("admin,car.add,moderator")]
         public IResult Add(Car car)
         {         
              _carDal.Add(car);
