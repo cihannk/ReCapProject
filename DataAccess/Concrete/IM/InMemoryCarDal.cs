@@ -78,5 +78,30 @@ namespace DataAccess.Concrete.IM
         {
             throw new NotImplementedException();
         }
+
+        public List<Car> GetCarsByColorId(int colorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Car> GetCarsByBrandId(int brandId)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<CarDetailDTO> ICarDal.GetCarsByColorId(int colorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<CarDetailDTO> ICarDal.GetCarsByBrandId(int brandId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public CarDetailDTO GetCarByCarId(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

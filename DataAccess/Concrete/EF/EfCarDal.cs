@@ -21,9 +21,25 @@ namespace DataAccess.Concrete.EF
                              color in context.Colors
                              on car.ColorId equals color.ColorId join
                              brand in context.Brands on car.BrandId equals brand.BrandId
-                             select new CarDetailDTO { BrandName= brand.Name, CarName=car.Description, ColorName=color.Name, DailyPrice=car.DailyPrice};
+                             select new CarDetailDTO {CarId=car.CarId, BrandId=brand.BrandId, ColorId=color.ColorId, BrandName= brand.Name, Description=car.Description, ColorName=color.Name, DailyPrice=car.DailyPrice, ModelYear=car.ModelYear};
                 return result.ToList();        
             }
+        }
+
+        public List<CarDetailDTO> GetCarsByBrandId(int brandId)
+        {
+            return this.GetCarDetails().FindAll(car => car.BrandId == brandId);
+        }
+
+        public List<CarDetailDTO> GetCarsByColorId(int colorId)
+        {
+            return this.GetCarDetails().FindAll(car => car.ColorId == colorId);
+
+        }
+
+        public CarDetailDTO GetCarByCarId(int id)
+        {
+            return this.GetCarDetails().Find(car => car.CarId == id);
         }
     }
 }

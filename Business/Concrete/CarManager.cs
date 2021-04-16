@@ -45,20 +45,27 @@ namespace Business.Concrete
         }
 
         [CacheAspect(20)]
-        [SecuredOperation("admin,car.getall,moderator")]
+        //[SecuredOperation("admin,car.getall,moderator")]
         public IDataResult<List<Car>> GetAll()
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarsListed);
         }
 
-        [SecuredOperation("admin,car.getbyid,moderator")]
+        //[SecuredOperation("admin,car.getbyid,moderator")]
         [CacheAspect(20)]
         public IDataResult<Car> GetById(int id)
         {
             return new SuccessDataResult<Car>(_carDal.Get(p => p.CarId == id));
 
         }
-        [SecuredOperation("admin,car.getbydetails,moderator")]
+
+        [CacheAspect(20)]
+        public IDataResult<CarDetailDTO> GetCarDetailById(int id)
+        {
+            return new SuccessDataResult<CarDetailDTO>(this._carDal.GetCarByCarId(id));
+        }
+
+        //[SecuredOperation("admin,car.getbydetails,moderator")]
         [CacheAspect(20)]
         public IDataResult<List<CarDetailDTO>> GetCarDetails()
         {
@@ -82,6 +89,15 @@ namespace Business.Concrete
         {
             _carDal.Update(car);
             return new SuccessResult("Araç başarıyla güncellendi");
+        }
+
+        public IDataResult<List<CarDetailDTO>> GetCarsByColorId(int colorId)
+        {
+            return new SuccessDataResult<List<CarDetailDTO>>(_carDal.GetCarsByColorId(colorId));
+        }
+        public IDataResult<List<CarDetailDTO>> GetCarsByBrandId(int brandId)
+        {
+            return new SuccessDataResult<List<CarDetailDTO>>(_carDal.GetCarsByBrandId(brandId));
         }
     }
 }

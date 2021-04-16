@@ -25,8 +25,11 @@ namespace Business.Concrete
             {
                 return result;
             }
+            string path = @"C:\Users\Cihan\source\repos\ReCapProject\Entities\EntityAssets\CarImage\";
+            carImage.ImagePath = path + (string)carImage.ImagePath;
             carImage.Date = DateTime.Now;
             _carImageDal.Add(carImage);
+
             return new SuccessResult(Messages.CarImageAdded);
         }
 

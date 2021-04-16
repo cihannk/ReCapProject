@@ -2,31 +2,38 @@
 using System.Collections.Generic;
 using System.Text;
 using Business.Abstract;
+using Core.Business.Concrete;
 using Core.Entities.Concrete;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 
 namespace Business.Concrete
 {
-    public class UserManager : IUserService
+    public class UserManager : ManagerRepository<User>, IUserService
     {
-        IUserDal _userDal;
-        public UserManager(IUserDal userDal)
+        public UserManager(IUserDal userDal) : base(userDal)
         {
-            _userDal = userDal;
-        }
-        public void Add(User user)
-        {
-            _userDal.Add(user);
+            
         }
 
         public User GetByEmail(string email)
         {
-            return _userDal.Get(user => user.Email == email);
+            throw new NotImplementedException();
+        }
+
+        public override IDataResult<User> GetById(int id)
+        {
+            return new SuccessDataResult<User>(base._dal.Get(user => user.UserId == id));
         }
 
         public List<OperationClaim> GetClaims(User user)
         {
-            return _userDal.GetClaims(user);
+            throw new NotImplementedException();
+        }
+
+        void IUserService.Add(User user)
+        {
+            throw new NotImplementedException();
         }
     }
 }

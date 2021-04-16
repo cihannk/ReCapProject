@@ -8,8 +8,8 @@ using Entities.DTOs;
 
 namespace Business.Abstract
 {
-    public interface IRentalService:IBaseService<Rental>
+    public interface IRentalService : IBaseService<Rental>
     {
-
+        IDataResult<List<RentalDetailDto>> GetDetails();
     }
 }

@@ -9,8 +9,8 @@ namespace Core.Business
     {
         IDataResult<List<T>> GetAll();
         IDataResult<T> GetById(int id);
-        IResult Update(T rental);
-        IResult Add(T rental);
-        IResult Delete(T rental);
+        IResult Update(T item);
+        IResult Add(T item);
+        IResult Delete(T item);
     }
 }

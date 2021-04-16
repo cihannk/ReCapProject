@@ -23,8 +23,7 @@ namespace WebAPI.Controllers
         [HttpPost("add")]
         public IActionResult Add(CarImage carImage)
         {
-            string path = @"C:\Users\Cihan\source\repos\ReCapProject\Entities\EntityAssets\CarImage\";
-            carImage.ImagePath = path + carImage.Id;
+            
             IResult result =  _carImageManager.Add(carImage);
             if (result.Success)
             {
@@ -52,6 +51,13 @@ namespace WebAPI.Controllers
                 return Ok(result);
             }
             return BadRequest(result);
+        }
+        [HttpGet("get")]
+        public IActionResult GetImage(int carid)
+        {
+            var paths = _carImageManager.GetCarImages(carid);
+            Byte[] b = System.IO.File.ReadAllBytes(paths.Data[0]+".jpg");
+            return File(b, "image/jpeg");
         }
     }
 }
